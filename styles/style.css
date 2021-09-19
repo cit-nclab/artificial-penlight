@@ -1,0 +1,250 @@
+:root {
+  --c-primary: #00a2ff;
+  --c-primary-light: #c7efff;
+  --c-primary-dark: #007bc2;
+
+  --c-secondary: #ff57b3;
+  --c-secondary-light: #ffa4d5;
+  --c-secondary-dark: #c01171;
+
+  --c-black: #0c0d11;
+  --c-gray-90: #1d2027;
+  --c-gray-80: #2d303a;
+  --c-gray-70: #30363f;
+  --c-gray-30: #8c9aac;
+  --c-gray-20: #c0cbd8;
+  --c-gray-10: #e7ecf1;
+  --c-gray-05: #f5f7fa;
+  --c-white: #fff;
+
+  --c-text: var(--c-white);
+  --c-link: var(--c-secondary);
+  --c-link_hover: var(--c-secondary-light);
+  --c-back: var(--c-black);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", "BIZ UDGothic", sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 1.75;
+  color: var(--c-text);
+  background-color: var(--c-back);
+}
+
+a {
+  color: var(--c-link);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--c-link_hover);
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input,
+button,
+select,
+textarea {
+  font: inherit;
+  color: var(--c-text);
+  border: 0;
+}
+
+iframe {
+  border: 0;
+  border-radius: 8px;
+}
+
+.button {
+  display: flex;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #fff2;
+  border-top: 1px solid #fff3;
+  border-bottom: 1px solid #0002;
+  text-shadow: 0 0 0.2em var(--c-secondary),
+  0 0 1em var(--c-secondary),
+  0 0 2em var(--c-secondary),
+  0 0 3em var(--c-secondary);
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #fff3;
+}
+
+.button__icon {
+  display: block;
+  filter:
+    drop-shadow(0 0 0.2em var(--c-secondary))
+    drop-shadow(0 0 1em var(--c-secondary))
+    drop-shadow(0 0 2em var(--c-secondary));
+}
+
+.icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-top: 1px solid #fff0;
+  border-bottom: 1px solid #0000;
+  border-radius: 4px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.icon-button:hover {
+  background-color: #fff2;
+  border-top: 1px solid #fff3;
+  border-bottom: 1px solid #0002;
+}
+
+.dialog {
+  position: fixed;
+  max-width: 720px;
+  padding: 32px;
+  margin: auto;
+  inset: 0;
+  height: fit-content;
+  border-radius: 32px;
+  background-color: var(--c-gray-90);
+  animation-fill-mode: forwards;
+  animation-duration: 0.2s;
+}
+
+.dialog--open {
+  animation-name: openDialog;
+}
+
+.dialog:not(.dialog--open) {
+  animation-name: closeDialog;
+}
+
+.dialog__title {
+  margin-bottom: 16px;
+}
+
+.dialog__text {
+  margin-bottom: 16px;
+}
+
+.dialog__image {
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 16px;
+}
+
+.dialog__button {
+  margin: 0 auto;
+}
+
+.header {
+  height: 56px;
+  padding: 0 16px;
+}
+
+.header__inner {
+  max-width: 1280px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.header__logo {
+  width: 160px;
+}
+
+.header__title {
+  font-size: 1.5rem;
+}
+
+.main__canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.debug {
+  background-color: #0003;
+  width: fit-content;
+}
+
+.debug__key {
+  font-weight: 600;
+}
+
+.debug__value--refresh {
+  animation: refreshDebugValue 1s;
+}
+
+@keyframes refreshDebugValue {
+  0% {
+    color: var(--c-primary);
+  }
+
+  100% {
+    clear: var(--w-text);
+  }
+}
+
+@keyframes openDialog {
+  0% {
+    visibility: hidden;
+    transform: scale(95%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(100%);
+    opacity: 1;
+  }
+}
+
+@keyframes closeDialog {
+  0% {
+    transform: scale(100%);
+    opacity: 1;
+  }
+
+  100% {
+    visibility: hidden;
+    transform: scale(95%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 736px) {
+  .dialog {
+    padding: 16px;
+    margin: auto 16px;
+  }
+}
