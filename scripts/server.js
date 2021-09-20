@@ -1,6 +1,6 @@
 class MOServer extends EventTarget {
   connect() {
-    const host = 'wss://mso5-ws-s.herokuapp.com/'
+    const host = 'wss://mso5-ws-s.herokuapp.com/c'
     this._ws = new WebSocket(host)
 
     const messageEvent = new CustomEvent('message')
