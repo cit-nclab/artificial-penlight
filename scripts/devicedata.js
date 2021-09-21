@@ -15,23 +15,29 @@ class MODeviceData extends EventTarget {
   }
 
   _sumArray(array) {
-    const unRoundedSum = array.reduce((sum, currentValue, i, array) => {
-      if(i !== 0) {
-        return sum + Math.abs(Math.abs(currentValue) - Math.abs(array[i - 1]))
-      }
-
-      return sum + Math.abs(currentValue)
+    return array.reduce((sum, current) => {
+      return sum + current
     })
-    return Math.round(unRoundedSum * 100) / 100
   }
 
-  _updateState(xSum, ySum) {
-    if (xSum > 15) {
+  _averageArray(array) {
+    return this._sumArray(array) / array.length
+  }
+
+  _varianceArray(array) {
+    const average = this._averageArray(array)
+    return array.reduce((sum, current) => {
+      return sum + Math.round((current - average) ** 2)
+    })
+  }
+
+  _updateState(x, z) {
+    if (x > 15000) {
       this._changeState(1)
       return
     }
 
-    if (ySum > 7) {
+    if (z > 18000) {
       this._changeState(2)
       return
     }
@@ -46,11 +52,11 @@ class MODeviceData extends EventTarget {
   }
 
   append(data) {
-    this._appendToArray(this._xArray, data.x)
-    this._dataChangeEvent.x = this._sumArray(this._xArray)
+    this._appendToArray(this._xArray, data.pitch)
+    this._dataChangeEvent.x = this._varianceArray(this._xArray)
 
-    this._appendToArray(this._zArray, data.z)
-    this._dataChangeEvent.z = this._sumArray(this._zArray)
+    this._appendToArray(this._zArray, data.roll)
+    this._dataChangeEvent.z = this._varianceArray(this._zArray)
 
     this._dataChangeEvent.pitch = data.pitch
     this._dataChangeEvent.roll = data.roll
