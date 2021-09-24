@@ -7,6 +7,8 @@ class MODeviceData extends EventTarget {
     this._zArray = [...initArray]
     this._dataChangeEvent = new CustomEvent('datachange')
     this._stateChangeEvent = new CustomEvent('statechange')
+    this._thresholdX = 15000
+    this._thresholdZ = 18000
   }
 
   _appendToArray(array, value) {
@@ -32,12 +34,12 @@ class MODeviceData extends EventTarget {
   }
 
   _updateState(x, z) {
-    if (x > 15000) {
+    if (x > this._thresholdX) {
       this._changeState(1)
       return
     }
 
-    if (z > 18000) {
+    if (z > this._thresholdZ) {
       this._changeState(2)
       return
     }

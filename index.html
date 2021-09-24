@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>デバイス動作テストページ｜Miku's Origin アーティフィシャルナイト</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webapp</title>
+  <meta name="theme-color" content="#00a2ff">
+  <meta property="og:title" content="デバイス動作テストページ｜Miku's Origin アーティフィシャルナイト">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mikusorigin.com/artificial_night/device_test">
+  <meta property="og:image" content="https://mikusorigin.com/artificial_night/images/main.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@CIT_VLLab">
+  <link rel="canonical" href="https://mikusorigin.com/artificial_night">
+  <link rel="icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="styles/style.css">
   <script src="scripts/main.js" type="module"></script>
 </head>
@@ -14,15 +23,21 @@
       <a href="https://mikusorigin.com/artificial_night">
         <img class="header__logo" src="images/logo.png" alt="">
       </a>
-      <h1 class="header__title">デバイス接続テストページ</h1>
+      <h1 class="header__title"><span class="no-wrap">デバイス動作</span><span class="no-wrap">テストページ</span></h1>
     </div>
+    <div class="header__border"></div>
   </header>
   <div class="main">
     <canvas id="canvas-device" class="main__canvas"></canvas>
-    <div>
-      <pre class="debug"><span class="debug__key">State:</span> <span id="state" class="debug__value"></span></pre>
-      <pre class="debug"><span class="debug__key">Device Data:</span> <span id="data-device" class="debug__value"></span></pre>
-      <pre class="debug"><span class="debug__key">Server Data:</span> <span id="data-server" class="debug__value"></span></pre>
+    <div class="indicator-list">
+      <div class="indicator">
+        <div class="indicator__text">縦振り</div>
+        <div class="indicator__empty"><div class="indicator__filled" id="indicator_x"></div></div>
+      </div>
+      <div class="indicator">
+        <div class="indicator__text">横振り</div>
+        <div class="indicator__empty"><div class="indicator__filled" id="indicator_z"></div></div>
+      </div>
     </div>
   </div>
   <div id="dialog-device" class="dialog dialog--open">

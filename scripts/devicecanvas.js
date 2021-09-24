@@ -5,13 +5,15 @@ class MODeviceCanvas {
   constructor(canvas) {
     this._renderer = new THREE.WebGLRenderer({
       canvas,
-      alpha: true
+      alpha: true,
+      antialias: true
     })
     this._scene = new THREE.Scene()
     this._camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 20)
+    this._camera.position.y = 3
     this._camera.position.z = 10
 
-    const light = new THREE.AmbientLight()
+    const light = new THREE.HemisphereLight(0xffffff, 0x0c0d11, 1.0);
     this._scene.add(light)
 
     const loader = new GLTFLoader()
@@ -38,8 +40,6 @@ class MODeviceCanvas {
   }
 
   rotateModel(x, y, z) {
-    console.log(x, y, z)
-
     const radX = THREE.MathUtils.degToRad(x)
     const radY = THREE.MathUtils.degToRad(y)
     const radZ = THREE.MathUtils.degToRad(z)

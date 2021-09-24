@@ -123,6 +123,10 @@ iframe {
   border-bottom: 1px solid #0002;
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .dialog {
   position: fixed;
   max-width: 720px;
@@ -134,6 +138,10 @@ iframe {
   background-color: var(--c-gray-90);
   animation-fill-mode: forwards;
   animation-duration: 0.2s;
+  border: 2px solid var(--c-white);
+  box-shadow: 0 0 0.2em var(--c-primary),
+  0 0 1em var(--c-primary),
+  0 0 2em var(--c-primary);
 }
 
 .dialog--open {
@@ -149,22 +157,24 @@ iframe {
 }
 
 .dialog__text {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .dialog__image {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   border-radius: 16px;
 }
 
 .dialog__button {
   margin: 0 auto;
+  margin-top: 32px;
 }
 
 .header {
   height: 56px;
   padding: 0 16px;
+  background-color: var(--c-gray-90);
 }
 
 .header__inner {
@@ -174,6 +184,7 @@ iframe {
   display: flex;
   gap: 16px;
   align-items: center;
+  justify-content: center;
 }
 
 .header__logo {
@@ -181,7 +192,14 @@ iframe {
 }
 
 .header__title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.header__border {
+  border: 1px solid var(--c-white);
+  box-shadow: 0 0 0.2em var(--c-primary),
+  0 0 1em var(--c-primary),
+  0 0 2em var(--c-primary);
 }
 
 .main__canvas {
@@ -193,17 +211,41 @@ iframe {
   z-index: -1;
 }
 
-.debug {
-  background-color: #0003;
-  width: fit-content;
+.indicator-list {
+  position: fixed;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  bottom: 32px;
+  left: 0;
+  right: 0;
 }
 
-.debug__key {
-  font-weight: 600;
+.indicator {
+  width: 100%;
+  padding: 0 32px;
+  margin: auto;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
-.debug__value--refresh {
-  animation: refreshDebugValue 1s;
+.indicator__empty {
+  border-radius: 4px;
+  flex-grow: 1;
+  height: 8px;
+  background-color: #fff2;
+}
+
+.indicator__filled {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 0.2em var(--c-secondary),
+  0 0 1em var(--c-secondary),
+  0 0 2em var(--c-secondary),
+  0 0 3em var(--c-secondary);
 }
 
 @keyframes refreshDebugValue {
@@ -247,4 +289,15 @@ iframe {
     padding: 16px;
     margin: auto 16px;
   }
+}
+
+@media (max-width: 480px) {
+.header__logo {
+  width: 128px;
+}
+
+.header__title {
+  font-size: 1rem;
+  text-align: right;
+}
 }
