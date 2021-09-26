@@ -6,7 +6,7 @@ const getJSON = async (path) => {
 }
 
 const deviceName = 'Artificial_Light'
-const serviceUUIDList = await getJSON('../uuid_list/uuid.json')
+const serviceUUIDList = await getJSON('./uuid_list/uuid.json')
 
 class MODevice {
   constructor() {
