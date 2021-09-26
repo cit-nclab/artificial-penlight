@@ -1,7 +1,7 @@
 import { MODeviceData } from './devicedata.js'
 
-const serviceUUID = 'd5875408-fa51-4763-a75d-7d33cecebc31'
-const characteristicUUID = 'a4f01d8c-a037-43b6-9050-1876a8c23584'
+const serviceUUID = '96d19289-09e4-ceba-b13a-af29487f3925'
+const characteristicUUID = '47edd667-e7bb-3452-4a2d-dfb15ccbc90f'
 const deviceName = 'Artificial_Light'
 
 class MODevice {
