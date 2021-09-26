@@ -32,19 +32,29 @@
     <div class="indicator-list">
       <div class="indicator">
         <div class="indicator__text">縦振り</div>
-        <div class="indicator__empty"><div class="indicator__filled" id="indicator_x"></div></div>
+        <div class="indicator__empty">
+          <div class="indicator__filled" id="indicator_x"></div>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator__text">横振り</div>
-        <div class="indicator__empty"><div class="indicator__filled" id="indicator_z"></div></div>
+        <div class="indicator__empty">
+          <div class="indicator__filled" id="indicator_z"></div>
+        </div>
       </div>
     </div>
   </div>
   <div id="dialog-device" class="dialog dialog--open">
-    <h2 class="dialog__title">デバイス接続のしかた</h2>
-    <img class="dialog__image" src="https://placehold.jp/960x320.png" alt="">
-    <p class="dialog__text">対応OS: Windows 10, Android 6.0 以上</p>
-    <p class="dialog__text">対応ブラウザ: Google Chrome 56 以上, Microsoft Edge 79 以上, Opera 43 以上</p>
+    <section class="dialog__section">
+      <h2 class="dialog__heading">接続の仕方</h2>
+      <p class="dialog__text">「デバイスに接続」を押し、デバイス接続ダイアログから「****」を選択してください。</p>
+      <p class="dialog__text">デバイスが動かない・見つからない場合、デバイスの電池を付け直して再起動し、再度お試しください。</p>
+    </section>
+    <section class="dialog__section">
+      <h2 class="dialog__heading">対応OS・ブラウザ</h2>
+      <p class="dialog__text">対応OS: Windows, macOS</p>
+      <p class="dialog__text">対応ブラウザ: Google Chrome 56 以上, Microsoft Edge 79 以上, Opera 43 以上</p>
+    </section>
     <button id="button-device" class="dialog__button button">デバイスに接続</button>
   </div>
 </body>

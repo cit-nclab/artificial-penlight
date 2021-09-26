@@ -152,8 +152,15 @@ iframe {
   animation-name: closeDialog;
 }
 
-.dialog__title {
+.dialog__heading {
+  font-size: 1.25rem;
   margin-bottom: 16px;
+  padding-left: 16px;
+  border-left: solid 4px var(--c-text);
+}
+
+.dialog__section {
+  margin-bottom: 32px;
 }
 
 .dialog__text {
@@ -168,7 +175,6 @@ iframe {
 
 .dialog__button {
   margin: 0 auto;
-  margin-top: 32px;
 }
 
 .header {
