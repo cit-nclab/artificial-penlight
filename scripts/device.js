@@ -11,7 +11,7 @@ class MODevice {
 
   async _fetchCharacteristic() {
     const options = {
-      filters: [{ name: deviceName }],
+      filters: [{ namePrefix: deviceName }],
       optionalServices: [serviceUUID]
     }
 
