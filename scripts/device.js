@@ -1,8 +1,12 @@
 import { MODeviceData } from './devicedata.js'
 
-const serviceUUID = '96d19289-09e4-ceba-b13a-af29487f3925'
-const characteristicUUID = '47edd667-e7bb-3452-4a2d-dfb15ccbc90f'
+const getJSON = async (path) => {
+  const response = await fetch(path)
+  return await response.json()
+}
+
 const deviceName = 'Artificial_Light'
+const serviceUUIDList = await getJSON('../uuid_list/uuid.json')
 
 class MODevice {
   constructor() {
@@ -11,14 +15,17 @@ class MODevice {
 
   async _fetchCharacteristic() {
     const options = {
-      filters: [{ namePrefix: deviceName }],
-      optionalServices: [serviceUUID]
+      filters: [
+        { namePrefix: deviceName },
+        { services: serviceUUIDList }
+      ]
     }
 
     this._device = await navigator.bluetooth.requestDevice(options)
     const server = await this._device.gatt.connect()
-    const service = await server.getPrimaryService(serviceUUID)
-    return await service.getCharacteristic(characteristicUUID)
+    const services = await server.getPrimaryServices()
+    const characteristics = await services[0].getCharacteristics()
+    return characteristics[0]
   }
 
   _handler(event) {
