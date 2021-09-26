@@ -2,7 +2,7 @@ import { MODeviceData } from './devicedata.js'
 
 const serviceUUID = 'd5875408-fa51-4763-a75d-7d33cecebc31'
 const characteristicUUID = 'a4f01d8c-a037-43b6-9050-1876a8c23584'
-const deviceName = 'NefryBT'
+const deviceName = 'Artificial_Light'
 
 class MODevice {
   constructor() {
