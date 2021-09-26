@@ -8,7 +8,7 @@ class MODeviceData extends EventTarget {
     this._dataChangeEvent = new CustomEvent('datachange')
     this._stateChangeEvent = new CustomEvent('statechange')
     this._thresholdX = 15000
-    this._thresholdZ = 18000
+    this._thresholdZ = 20000
   }
 
   _appendToArray(array, value) {
