@@ -55,6 +55,7 @@ class MODeviceData extends EventTarget {
   }
 
   append(data) {
+    console.log(data)
     this._appendToArray(this._xArray, data.pitch)
     this._dataChangeEvent.x = this._varianceArray(this._xArray)
 
