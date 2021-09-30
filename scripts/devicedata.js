@@ -1,5 +1,5 @@
 class MODeviceData extends EventTarget {
-  constructor() {
+  constructor(uuid) {
     super()
     this._length = 50
     const initArray = new Array(this._length).fill(0)
@@ -7,6 +7,7 @@ class MODeviceData extends EventTarget {
     this._zArray = [...initArray]
     this._dataChangeEvent = new CustomEvent('datachange')
     this._stateChangeEvent = new CustomEvent('statechange')
+    this._stateChangeEvent.uuid = uuid
     this._thresholdX = 15000
     this._thresholdZ = 20000
   }
@@ -54,6 +55,7 @@ class MODeviceData extends EventTarget {
   }
 
   append(data) {
+    console.log(data)
     this._appendToArray(this._xArray, data.pitch)
     this._dataChangeEvent.x = this._varianceArray(this._xArray)
 
@@ -63,6 +65,8 @@ class MODeviceData extends EventTarget {
     this._dataChangeEvent.pitch = data.pitch
     this._dataChangeEvent.roll = data.roll
     this._dataChangeEvent.heading = data.heading
+
+    this._dataChangeEvent.color = data.colorStatus
 
     this.dispatchEvent(this._dataChangeEvent)
     this._updateState(this._dataChangeEvent.x, this._dataChangeEvent.z)

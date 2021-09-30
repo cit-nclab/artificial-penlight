@@ -10,10 +10,9 @@ const serviceUUIDList = await getJSON('./json/uuid.json')
 
 class MODevice {
   constructor() {
-    this.data = new MODeviceData()
   }
 
-  async _fetchCharacteristic() {
+  async _fetchService() {
     const options = {
       filters: [
         { namePrefix: deviceName },
@@ -24,7 +23,11 @@ class MODevice {
     this._device = await navigator.bluetooth.requestDevice(options)
     const server = await this._device.gatt.connect()
     const services = await server.getPrimaryServices()
-    const characteristics = await services[0].getCharacteristics()
+    return services[0]
+  }
+
+  async _fetchCharacteristic(service) {
+    const characteristics = await service.getCharacteristics()
     return characteristics[0]
   }
 
@@ -37,14 +40,17 @@ class MODevice {
       z: json.a.z,
       pitch: json.pitch,
       roll: json.roil,
-      heading: json.heading
+      heading: json.heading,
+      color: json.colorStatus
     }
     this.data.append(data)
   }
 
   async connect() {
     try {
-      const characteristic = await this._fetchCharacteristic()
+      const service = await this._fetchService()
+      const characteristic = await this._fetchCharacteristic(service)
+      this.data = new MODeviceData(service.uuid)
       characteristic.addEventListener('characteristicvaluechanged', (event) => { this._handler(event) })
       characteristic.startNotifications()
       return true

@@ -3,10 +3,10 @@ import { MOServer } from './server.js'
 import { MODeviceCanvas } from './devicecanvas.js'
 
 let sendTimer
-const sendStateToServer = (state) => {
+const sendStateToServer = (uuid, color, state) => {
   if(state === 0) return
   console.log(state)
-  server.send(state)
+  server.send(`${uuid}_${color}_${state}`)
 }
 
 const server = new MOServer()
@@ -16,7 +16,7 @@ connectDeviceButton.addEventListener('click', async () => {
   if(await device.connect()) {
     device.data.addEventListener('statechange', (event) => {
       clearInterval(sendTimer)
-      sendTimer = setInterval(sendStateToServer, 3000, event.state)
+      sendTimer = setInterval(sendStateToServer, 500, event.uuid, event.color, event.state)
     })
 
     server.connect()
