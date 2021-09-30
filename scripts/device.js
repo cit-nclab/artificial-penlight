@@ -35,7 +35,6 @@ class MODevice {
     const value = event.target.value
     const string = new TextDecoder().decode(value)
     const json = JSON.parse(string)
-    console.log(json)
     const data = {
       x: json.a.x,
       z: json.a.z,

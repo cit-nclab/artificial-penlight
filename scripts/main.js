@@ -5,7 +5,6 @@ import { MODeviceCanvas } from './devicecanvas.js'
 let sendTimer
 const sendStateToServer = (uuid, color, state) => {
   if(state === 0) return
-  console.log(state)
   server.send(`${uuid}_${color}_${state}`)
 }
 

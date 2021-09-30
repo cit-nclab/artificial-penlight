@@ -55,7 +55,6 @@ class MODeviceData extends EventTarget {
   }
 
   append(data) {
-    console.log(data)
     this._appendToArray(this._xArray, data.pitch)
     this._dataChangeEvent.x = this._varianceArray(this._xArray)
 
@@ -66,7 +65,7 @@ class MODeviceData extends EventTarget {
     this._dataChangeEvent.roll = data.roll
     this._dataChangeEvent.heading = data.heading
 
-    this._dataChangeEvent.color = data.colorStatus
+    this._dataChangeEvent.color = data.color
 
     this.dispatchEvent(this._dataChangeEvent)
     this._updateState(this._dataChangeEvent.x, this._dataChangeEvent.z)
