@@ -51,7 +51,8 @@ class MODevice {
     try {
       const service = await this._fetchService()
       const characteristic = await this._fetchCharacteristic(service)
-      this.data = new MODeviceData(service.uuid)
+      const deviceNumber = serviceUUIDList.indexOf(service.uuid) + 1
+      this.data = new MODeviceData(deviceNumber)
       characteristic.addEventListener('characteristicvaluechanged', (event) => { this._handler(event) })
       characteristic.startNotifications()
       return true
